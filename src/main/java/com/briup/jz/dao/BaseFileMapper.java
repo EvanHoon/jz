@@ -59,7 +59,6 @@ public interface BaseFileMapper {
      * This method corresponds to the database table base_file
      *
      * @mbg.generated Thu Jun 03 16:08:43 CST 2021
-     * @param id
      */
     BaseFile selectByPrimaryKey(String id);
 
