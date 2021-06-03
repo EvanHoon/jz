@@ -8,6 +8,5 @@ package com.briup.jz.service;
 
 public interface ICarousel {
 
-    void saveOrUpdate(Carouse)
 
 }
