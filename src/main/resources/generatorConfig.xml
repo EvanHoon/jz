@@ -56,6 +56,7 @@
         <table tableName="base_file" domainObjectName="BaseFile"></table>
         <table tableName="base_config" domainObjectName="BaseConfig"></table>
         <table tableName="cms_category" domainObjectName="Category"></table>
+        <table tableName="cms_carousel" domainObjectName="Carousel"></table>
         <table tableName="cms_article" domainObjectName="Article">
             <columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR"/>
             <columnOverride column="source" javaType="java.lang.String" jdbcType="VARCHAR"/>
@@ -64,6 +65,7 @@
             <columnOverride column="comment" javaType="java.lang.String" jdbcType="VARCHAR"/>
             <columnOverride column="reply" javaType="java.lang.String" jdbcType="VARCHAR"/>
         </table>
+        <table tableName="jz_certification_apply" domainObjectName="CertificationApply"></table>
         <table tableName="jz_order" domainObjectName="Order"></table>
         <table tableName="jz_order_line" domainObjectName="OrderLine"></table>
         <table tableName="jz_product" domainObjectName="Product"></table>
