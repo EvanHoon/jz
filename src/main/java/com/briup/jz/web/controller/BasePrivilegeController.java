@@ -28,13 +28,6 @@ public class BasePrivilegeController {
     private IBasePrivilegeService basePrivilegeService;
 
     @ApiOperation(value = "插入")
-//    @ApiImplicitParams({
-//            @ApiImplicitParam(name = "id", value = "主键", paramType = "form"),
-//            @ApiImplicitParam(name = "name", value = "栏目名称", paramType = "form", required = true),
-//            @ApiImplicitParam(name = "description", value = "栏目描述", paramType = "form"),
-//            @ApiImplicitParam(name = "no", value = "序号", paramType = "form"),
-//            @ApiImplicitParam(name = "parentId", value = "父栏目id", paramType = "form"),
-//    })
     @PostMapping("/saveOrUpdate")
     public Message saveOrUpdate(BasePrivilege basePrivilege) {
         basePrivilegeService.saveOrUpdate(basePrivilege);
