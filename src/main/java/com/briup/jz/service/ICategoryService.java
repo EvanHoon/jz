@@ -8,7 +8,12 @@ import com.briup.jz.utils.CustomerException;
 public interface ICategoryService {
 	void saveOrUpdate(Category category) throws CustomerException;
 	
-	List<Category> query(String name);
+	 List<Category>findLikeName(String name);
 	
 	void deleteById(long id) throws CustomerException;
+	
+	List<Category> findAll();
+	
+	 Category findById(long id);
+	  
 }

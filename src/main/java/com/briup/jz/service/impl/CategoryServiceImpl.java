@@ -34,7 +34,7 @@ public class CategoryServiceImpl implements ICategoryService {
 	}
 
 	@Override
-	public List<Category> query(String name) {
+	public List<Category> findLikeName(String name) {
 		CategoryExample example = new CategoryExample();
 		if(name!=null){
 			example.createCriteria().andNameLike("%"+name+"%");
@@ -52,5 +52,16 @@ public class CategoryServiceImpl implements ICategoryService {
 		categoryMapper.deleteByPrimaryKey(id);
 		
 	}
+
+	@Override
+	public Category findById(long id) {
+		return  categoryMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public List<Category> findAll() {	
+		return categoryMapper.selectByExample(new CategoryExample());
+	}
+
 
 }

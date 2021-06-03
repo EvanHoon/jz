@@ -29,11 +29,10 @@ public class CategoryController {
 
     @Autowired
     private ICategoryService categoryService;
-
     @ApiOperation(value = "查询所有资讯分类")
-    @GetMapping("/query")
-    public Message query(String name) {
-        List<Category> list = categoryService.query(name);
+    @GetMapping("/findAll")
+    public Message findAll(String name) {
+        List<Category> list = categoryService.findAll();
         return MessageUtil.success(list);
     }
 
@@ -59,5 +58,18 @@ public class CategoryController {
     public Message saveOrUpdate(Category category) {
         categoryService.saveOrUpdate(category);
         return MessageUtil.success("更新成功");
+    }
+    @ApiOperation("根据栏目名称模糊查询")
+    @ApiImplicitParam(name="name",value="栏目名称",dataType="String", paramType="query")
+    @GetMapping("/findNameLike")
+    public List<Category> findNameLike(String name){
+  	  return categoryService.findLikeName(name);
+    }
+    @ApiOperation("根据id查询栏目信息")
+	  @ApiImplicitParam(name="id",value="栏目id",required=true,dataType="long",paramType="query")
+    @GetMapping("findById")
+    public Message findById(long id) {
+  	  return MessageUtil.success(categoryService.findById(id));
+    
     }
 }
