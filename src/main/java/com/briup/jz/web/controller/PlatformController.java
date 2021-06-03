@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.briup.jz.bean.Carousel;
-import com.briup.jz.service.CarouselService;
+import com.briup.jz.bean.Platform;
+import com.briup.jz.service.IPlatformService;
 import com.briup.jz.utils.Message;
 import com.briup.jz.utils.MessageUtil;
 
@@ -21,18 +21,18 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
-@Api(description = "系统配置相关接口")
+@Api(description = "账户管理相关接口")
 @Validated
 @RestController
-@RequestMapping("/carousel") 
-public class CarouselController {
+@RequestMapping("/Platform")
+public class PlatformController {
 	 @Autowired
-	    private CarouselService carouselService;
+	    private IPlatformService platformService;
 
-	    @ApiOperation(value = "查询所有系统配置分类")
+	    @ApiOperation(value = "查询所有账户分类")
 	    @GetMapping("/findAll")
 	    public Message findAll(String name) {
-	        List<Carousel> list = carouselService.findAll();
+	        List<Platform> list = platformService.findAll();
 	        return MessageUtil.success(list);
 	    }
 
@@ -42,21 +42,20 @@ public class CarouselController {
 	            @ApiImplicitParam(name = "id", value = "主键", paramType = "query", required = true),
 	    })
 	    public Message deleteById(@NotNull Long id) {
-	        carouselService.deleteById(id);
+	        platformService.deleteById(id);
 	        return MessageUtil.success("删除成功");
 	    }
 
 	    @PostMapping("/saveOrUpdate")
 		@ApiOperation(value="保存或更新栏目信息",notes="如果id为空是保存否则更新")
-		public Message saveOrUpdate(Carousel carousel) {
-			carouselService.saveOrUpdate(carousel);
+		public Message saveOrUpdate(Platform platform) {
+			platformService.saveOrUpdate(platform);
 			return MessageUtil.success("操作成功");
 		}
 	    @ApiOperation("根据Id查询栏目信息")
 		@ApiImplicitParam(name="id",value="栏目id",required=true,dataType="long",paramType="query")
 		@GetMapping("findById")
 		public Message findById(long id) {
-			return MessageUtil.success(carouselService.findById(id));
+			return MessageUtil.success(platformService.findById(id));
 		}
-
 }
