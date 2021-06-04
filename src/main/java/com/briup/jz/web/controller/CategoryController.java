@@ -66,9 +66,9 @@ public class CategoryController {
   	  return categoryService.findLikeName(name);
     }
     @ApiOperation("根据id查询栏目信息")
-	  @ApiImplicitParam(name="id",value="栏目id",required=true,dataType="long",paramType="query")
+	  @ApiImplicitParam(name="id",value="栏目id",required=true,dataType="Long",paramType="query")
     @GetMapping("findById")
-    public Message findById(long id) {
+    public Message findById(Long id) {
   	  return MessageUtil.success(categoryService.findById(id));
     
     }

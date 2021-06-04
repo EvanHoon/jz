@@ -54,9 +54,9 @@ public class BaseUserRoleController {
 	        return MessageUtil.success("更新成功");
 	    }
 	  @ApiOperation("根据id查询用户信息")
-		@ApiImplicitParam(name="id",value="用户id",required=true,dataType="long",paramType="query")
+		@ApiImplicitParam(name="id",value="用户id",required=true,dataType="Long",paramType="query")
 	    @GetMapping("findById")
-	    public Message findById(long id) {
+	    public Message findById(Long id) {
 	  	 return MessageUtil.success(baseUserRoleService.findById(id));
 	    }
 }
