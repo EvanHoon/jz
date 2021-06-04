@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * author: 11721-任文豪
  * 2021年06月03日 下午 07:51:58
  */
-@Api(description = "BaseConfig系统配置表相关接口")
+@Api(description = "系统配置表相关接口")
 @Validated
 @RestController
 @RequestMapping("/baseConfig")

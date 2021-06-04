@@ -1,9 +1,11 @@
 package com.briup.jz.service.impl;
 
+import com.briup.jz.bean.AccountSystem;
 import com.briup.jz.bean.BaseRole;
 import com.briup.jz.bean.BaseRoleExample;
 import com.briup.jz.dao.BaseRoleMapper;
 import com.briup.jz.service.IBaseRoleService;
+import com.briup.jz.utils.CustomerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +43,9 @@ public class BaseRoleServiceImpl implements IBaseRoleService {
 
     @Override
     public void deleteById(Long id) {
+        if (baseRoleMapper.selectByPrimaryKey(id) == null) {
+            throw new CustomerException("要删除的分类信息不存在");
+        }
         baseRoleMapper.deleteByPrimaryKey(id);
     }
 }

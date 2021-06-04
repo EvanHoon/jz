@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * 2021年06月03日 下午 03:42:52
  */
 
-@Api(description = "BaseFile附件表相关接口")
+@Api(description = "附件表相关接口")
 @Validated
 @RestController
 @RequestMapping("/baseFile")
