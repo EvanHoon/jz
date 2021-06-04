@@ -4,6 +4,7 @@ import com.briup.jz.bean.BaseLog;
 import com.briup.jz.bean.BaseLogExample;
 import com.briup.jz.dao.BaseLogMapper;
 import com.briup.jz.service.IBaseLogService;
+import com.briup.jz.utils.CustomerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,9 @@ public class BaseLogServiceImpl implements IBaseLogService {
 
     @Override
     public void deleteById(Long id) {
+        if (baseLogMapper.selectByPrimaryKey(id) == null) {
+            throw new CustomerException("要删除的分类信息不存在");
+        }
         baseLogMapper.deleteByPrimaryKey(id);
     }
 }

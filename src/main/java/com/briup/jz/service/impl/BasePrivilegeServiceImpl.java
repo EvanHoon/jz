@@ -4,6 +4,7 @@ import com.briup.jz.bean.BasePrivilege;
 import com.briup.jz.bean.BasePrivilegeExample;
 import com.briup.jz.dao.BasePrivilegeMapper;
 import com.briup.jz.service.IBasePrivilegeService;
+import com.briup.jz.utils.CustomerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,9 @@ public class BasePrivilegeServiceImpl implements IBasePrivilegeService {
 
     @Override
     public void deleteById(Long id) {
+        if (basePrivilegeMapper.selectByPrimaryKey(id) == null) {
+            throw new CustomerException("要删除的分类信息不存在");
+        }
         basePrivilegeMapper.deleteByPrimaryKey(id);
     }
 }

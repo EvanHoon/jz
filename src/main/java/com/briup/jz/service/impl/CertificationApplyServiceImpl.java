@@ -6,6 +6,7 @@ import com.briup.jz.bean.CertificationApply;
 import com.briup.jz.bean.CertificationApplyExample;
 import com.briup.jz.dao.CertificationApplyMapper;
 import com.briup.jz.service.ICertificationApplyService;
+import com.briup.jz.utils.CustomerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +45,9 @@ public class CertificationApplyServiceImpl implements ICertificationApplyService
 
     @Override
     public void deleteById(Long id) {
+        if (certificationApplyMapper.selectByPrimaryKey(id) == null) {
+            throw new CustomerException("要删除的分类信息不存在");
+        }
         certificationApplyMapper.deleteByPrimaryKey(id);
     }
 }
