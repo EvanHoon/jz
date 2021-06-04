@@ -1,15 +1,12 @@
 package com.briup.jz.service.impl;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.briup.jz.bean.BaseUserRole;
 import com.briup.jz.bean.BaseUserRoleExample;
 import com.briup.jz.dao.BaseUserRoleMapper;
 import com.briup.jz.service.IBaseUserRoleService;
-
 import com.briup.jz.utils.CustomerException;
 
 @Service
