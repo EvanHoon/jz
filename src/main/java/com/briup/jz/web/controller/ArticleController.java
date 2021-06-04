@@ -40,7 +40,7 @@ public class ArticleController {
 	  @ApiOperation(value = "通过id删除")
 	    @GetMapping("/deleteById")
 	    @ApiImplicitParams({
-	            @ApiImplicitParam(name = "id", value = "主键", paramType = "form", required = true),
+	            @ApiImplicitParam(name = "id", value = "主键", paramType = "query", required = true),
 	    })
 	    public Message deleteById(@NotNull Long id) {
 	        articleService.deleteById(id);

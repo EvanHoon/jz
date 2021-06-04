@@ -1,13 +1,16 @@
 package com.briup.jz.service;
 
-import java.util.List;
-
 import com.briup.jz.bean.ProductCategory;
 import com.briup.jz.utils.CustomerException;
 
+import java.util.List;
+
 public interface IProductCategoryService {
-	void saveOrUpdate(ProductCategory productCategory) throws CustomerException;
-	void deleteById(long id) throws CustomerException;
-	List<ProductCategory> findAll();
-	ProductCategory findById(long id);
+    void saveOrUpdate(ProductCategory productCategory) throws CustomerException;
+
+    void deleteById(Long id) throws CustomerException;
+
+    List<ProductCategory> findAll();
+
+    ProductCategory findById(Long id);
 }
