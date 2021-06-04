@@ -2,12 +2,9 @@ package com.briup.jz.service.impl;
 
 import com.briup.jz.bean.BaseFile;
 import com.briup.jz.bean.BaseFileExample;
-import com.briup.jz.bean.Category;
-import com.briup.jz.bean.CategoryExample;
 import com.briup.jz.dao.BaseFileMapper;
 import com.briup.jz.service.IBaseFileService;
 import com.briup.jz.utils.CustomerException;
-import io.swagger.annotations.Example;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

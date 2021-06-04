@@ -1,6 +1,15 @@
 package com.briup.jz.service.impl;
 
+import com.briup.jz.bean.BaseRolePrivilege;
+import com.briup.jz.bean.BaseRolePrivilegeExample;
+import com.briup.jz.bean.CertificationApply;
+import com.briup.jz.bean.CertificationApplyExample;
+import com.briup.jz.dao.CertificationApplyMapper;
+import com.briup.jz.service.ICertificationApplyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -9,6 +18,32 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class CertificationApplyServiceImpl {
+public class CertificationApplyServiceImpl implements ICertificationApplyService {
 
+    @Autowired
+    private CertificationApplyMapper certificationApplyMapper;
+
+    @Override
+    public void saveOrUpdate(CertificationApply certificationApply) {
+        if (certificationApply.getId() != null) {
+            certificationApplyMapper.updateByPrimaryKey(certificationApply);
+        } else {
+            certificationApplyMapper.insert(certificationApply);
+        }
+    }
+
+    @Override
+    public CertificationApply findById(Long id) {
+        return certificationApplyMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<CertificationApply> findAll() {
+        return certificationApplyMapper.selectByExample(new CertificationApplyExample());
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        certificationApplyMapper.deleteByPrimaryKey(id);
+    }
 }

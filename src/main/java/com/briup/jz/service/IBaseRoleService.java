@@ -1,6 +1,7 @@
 package com.briup.jz.service;
 
 import com.briup.jz.bean.BaseRole;
+import com.briup.jz.utils.CustomerException;
 
 import java.util.List;
 
@@ -12,12 +13,12 @@ import java.util.List;
 
 public interface IBaseRoleService {
 
-    void saveOrUpdate(BaseRole baseRole);
+    void saveOrUpdate(BaseRole baseRole) throws CustomerException;
 
     BaseRole findById(Long id);
 
     List<BaseRole> findAll();
 
-    void deleteById(Long id);
+    void deleteById(Long id) throws CustomerException;
 
 }

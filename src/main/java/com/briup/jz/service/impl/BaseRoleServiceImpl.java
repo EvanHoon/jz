@@ -29,7 +29,7 @@ public class BaseRoleServiceImpl implements IBaseRoleService {
         }
     }
 
-    @Override 
+    @Override
     public BaseRole findById(Long id) {
         return baseRoleMapper.selectByPrimaryKey(id);
     }

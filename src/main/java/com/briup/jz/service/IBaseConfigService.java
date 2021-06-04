@@ -1,6 +1,7 @@
 package com.briup.jz.service;
 
 import com.briup.jz.bean.BaseConfig;
+import com.briup.jz.utils.CustomerException;
 
 import java.util.List;
 
@@ -12,12 +13,12 @@ import java.util.List;
 
 public interface IBaseConfigService {
 
-    void saveOrUpdate(BaseConfig baseConfig);
+    void saveOrUpdate(BaseConfig baseConfig) throws CustomerException;
 
     BaseConfig findById(Long id);
 
     List<BaseConfig> findAll();
 
-    void deleteById(Long id);
+    void deleteById(Long id) throws CustomerException;
 
 }

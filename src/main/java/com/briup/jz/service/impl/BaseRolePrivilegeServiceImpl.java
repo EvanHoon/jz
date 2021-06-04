@@ -1,6 +1,5 @@
 package com.briup.jz.service.impl;
 
-import com.briup.jz.bean.BasePrivilege;
 import com.briup.jz.bean.BaseRolePrivilege;
 import com.briup.jz.bean.BaseRolePrivilegeExample;
 import com.briup.jz.dao.BaseRolePrivilegeMapper;

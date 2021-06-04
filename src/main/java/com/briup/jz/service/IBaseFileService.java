@@ -1,6 +1,7 @@
 package com.briup.jz.service;
 
 import com.briup.jz.bean.BaseFile;
+import com.briup.jz.utils.CustomerException;
 
 import java.util.List;
 
@@ -12,11 +13,11 @@ import java.util.List;
 
 public interface IBaseFileService {
 
-    void save(BaseFile baseFile);
+    void save(BaseFile baseFile) throws CustomerException;
 
     BaseFile findById(String id);
 
     List<BaseFile> findAll();
 
-    void deleteById(String id);
+    void deleteById(String id) throws CustomerException;
 }

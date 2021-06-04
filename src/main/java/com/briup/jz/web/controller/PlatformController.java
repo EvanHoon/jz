@@ -55,7 +55,7 @@ public class PlatformController {
 	    @ApiOperation("根据Id查询栏目信息")
 		@ApiImplicitParam(name="id",value="栏目id",required=true,dataType="long",paramType="query")
 		@GetMapping("findById")
-		public Message findById(long id) {
+		public Message findById(Long id) {
 			return MessageUtil.success(platformService.findById(id));
 		}
 }

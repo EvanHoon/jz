@@ -1,6 +1,7 @@
 package com.briup.jz.service;
 
 import com.briup.jz.bean.CertificationApply;
+import com.briup.jz.utils.CustomerException;
 
 import java.util.List;
 
@@ -12,12 +13,12 @@ import java.util.List;
 
 public interface ICertificationApplyService {
 
-    void saveOrUpdate(CertificationApply certificationApply);
+    void saveOrUpdate(CertificationApply certificationApply) throws CustomerException;
 
     CertificationApply findById(Long id);
 
     List<CertificationApply> findAll();
 
-    void deleteById(Long id);
+    void deleteById(Long id) throws CustomerException;
 
 }

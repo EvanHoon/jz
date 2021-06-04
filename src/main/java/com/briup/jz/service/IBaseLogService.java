@@ -1,6 +1,7 @@
 package com.briup.jz.service;
 
 import com.briup.jz.bean.BaseLog;
+import com.briup.jz.utils.CustomerException;
 
 import java.util.List;
 
@@ -12,12 +13,12 @@ import java.util.List;
 
 public interface IBaseLogService {
 
-    void saveOrUpdate(BaseLog baseLog);
+    void saveOrUpdate(BaseLog baseLog) throws CustomerException;
 
     BaseLog findById(Long id);
 
     List<BaseLog> findAll();
 
-    void deleteById(Long id);
+    void deleteById(Long id) throws CustomerException;
 
 }

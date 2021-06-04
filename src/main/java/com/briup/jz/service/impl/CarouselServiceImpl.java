@@ -25,7 +25,7 @@ public class CarouselServiceImpl implements ICarouselService {
     }
 
     @Override
-    public void deleteById(long id) throws CustomerException {
+    public void deleteById(Long id) throws CustomerException {
         Carousel carousel = carouselMapper.selectByPrimaryKey(id);
         if (carousel == null) {
             throw new CustomerException("要删除的分类信息不存在");
@@ -40,7 +40,7 @@ public class CarouselServiceImpl implements ICarouselService {
     }
 
     @Override
-    public Carousel findById(long id) {
+    public Carousel findById(Long id) {
         return carouselMapper.selectByPrimaryKey(id);
     }
 }

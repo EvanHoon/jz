@@ -1,6 +1,7 @@
 package com.briup.jz.service;
 
 import com.briup.jz.bean.BasePrivilege;
+import com.briup.jz.utils.CustomerException;
 
 import java.util.List;
 
@@ -12,12 +13,12 @@ import java.util.List;
 
 public interface IBasePrivilegeService {
 
-    void saveOrUpdate(BasePrivilege basePrivilege);
+    void saveOrUpdate(BasePrivilege basePrivilege) throws CustomerException;
 
     BasePrivilege findById(Long id);
 
     List<BasePrivilege> findAll();
 
-    void deleteById(Long id);
+    void deleteById(Long id) throws CustomerException;
 
 }
