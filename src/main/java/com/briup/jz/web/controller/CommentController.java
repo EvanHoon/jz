@@ -55,7 +55,7 @@ public class CommentController {
 	        return MessageUtil.success("更新成功");
 	    }
 	  @ApiOperation("根据id查询栏目信息")
-		@ApiImplicitParam(name="id",value="栏目id",required=true,dataType="Long",paramType="query")
+		@ApiImplicitParam(name="id",value="栏目id",required=true,dataType="long",paramType="query")
 	    @GetMapping("findById")
 	    public Message findById(Long id) {
 	  	  return MessageUtil.success(commentService.findById(id));

@@ -1,17 +1,17 @@
 package com.briup.jz.service;
 
-import java.util.List;
-
 import com.briup.jz.bean.BaseUser;
 import com.briup.jz.utils.CustomerException;
 
-public interface IBaseUserService {
-	void saveOrUpdate(BaseUser baseUser) throws CustomerException;
+import java.util.List;
 
-	
-	void deleteById(long id) throws CustomerException;
-	
-	List<BaseUser> findAll();
-	
-	BaseUser findById(long id);
+public interface IBaseUserService {
+    void saveOrUpdate(BaseUser baseUser) throws CustomerException;
+
+
+    void deleteById(Long id) throws CustomerException;
+
+    List<BaseUser> findAll();
+
+    BaseUser findById(Long id);
 }

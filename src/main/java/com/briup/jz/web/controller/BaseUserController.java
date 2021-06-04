@@ -40,7 +40,7 @@ public class BaseUserController {
 	  @ApiOperation(value = "通过id删除")
 	    @GetMapping("/deleteById")
 	    @ApiImplicitParams({
-	    @ApiImplicitParam(name = "id", value = "主键", paramType = "form", required = true),
+	    @ApiImplicitParam(name = "id", value = "主键", paramType = "query", required = true),
 	    })
 	    public Message deleteById(@NotNull Long id) {
 	        baseUserService.deleteById(id);
@@ -54,7 +54,7 @@ public class BaseUserController {
 	        return MessageUtil.success("更新成功");
 	    }
 	  @ApiOperation("根据id查询用户信息")
-		@ApiImplicitParam(name="id",value="用户id",required=true,dataType="Long",paramType="query")
+		@ApiImplicitParam(name="id",value="用户id",required=true,dataType="long",paramType="query")
 	    @GetMapping("findById")
 	    public Message findById(Long id) {
 	  	 return MessageUtil.success(baseUserService.findById(id));

@@ -29,6 +29,7 @@ public class CategoryController {
 
     @Autowired
     private ICategoryService categoryService;
+
     @ApiOperation(value = "查询所有资讯分类")
     @GetMapping("/findAll")
     public Message findAll(String name) {
@@ -39,7 +40,7 @@ public class CategoryController {
     @ApiOperation(value = "通过id删除")
     @GetMapping("/deleteById")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键", paramType = "form", required = true),
+            @ApiImplicitParam(name = "id", value = "主键", paramType = "query", required = true),
     })
     public Message deleteById(@NotNull Long id) {
         categoryService.deleteById(id);
@@ -59,17 +60,19 @@ public class CategoryController {
         categoryService.saveOrUpdate(category);
         return MessageUtil.success("更新成功");
     }
+
     @ApiOperation("根据栏目名称模糊查询")
-    @ApiImplicitParam(name="name",value="栏目名称",dataType="String", paramType="query")
+    @ApiImplicitParam(name = "name", value = "栏目名称", dataType = "String", paramType = "query")
     @GetMapping("/findNameLike")
-    public List<Category> findNameLike(String name){
-  	  return categoryService.findLikeName(name);
+    public List<Category> findNameLike(String name) {
+        return categoryService.findLikeName(name);
     }
+
     @ApiOperation("根据id查询栏目信息")
-	  @ApiImplicitParam(name="id",value="栏目id",required=true,dataType="Long",paramType="query")
+    @ApiImplicitParam(name = "id", value = "栏目id", required = true, dataType = "long", paramType = "query")
     @GetMapping("findById")
     public Message findById(Long id) {
-  	  return MessageUtil.success(categoryService.findById(id));
-    
+        return MessageUtil.success(categoryService.findById(id));
+
     }
 }
