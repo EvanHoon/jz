@@ -1,55 +1,70 @@
 package com.briup.jz.service.impl;
 
-import com.briup.jz.bean.Article;
-import com.briup.jz.bean.ArticleExample;
-import com.briup.jz.dao.ArticleMapper;
-import com.briup.jz.service.IArticleService;
-import com.briup.jz.utils.CustomerException;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.briup.jz.bean.Article;
+import com.briup.jz.bean.ArticleExample;
+import com.briup.jz.bean.ArticleExample.Criteria;
+import com.briup.jz.bean.ArticleExample.Criterion;
+import com.briup.jz.bean.extend.ArticleExtend;
+import com.briup.jz.dao.ArticleMapper;
+import com.briup.jz.dao.extend.ArticleExtendMapper;
+import com.briup.jz.service.IArticleService;
 
 @Service
 public class ArticleServiceImpl implements IArticleService {
+	
+	@Autowired
+	private ArticleMapper articleMapper;
+	@Autowired
+	private ArticleExtendMapper articleExtendMapper;
 
-    @Autowired
-    private ArticleMapper articleMapper;
+	@Override
+	public List<Article> query(String title, String status, Long categoryId) {
+		// 模板查询， 你喜欢什么样的男孩子  男的 170 黑一点
+		ArticleExample example = new ArticleExample();
+		Criteria criteria = example.createCriteria();
+		// 多条件符合查询
+		if(title != null) {
+			criteria.andTitleLike("%"+title+"%");
+		}
+		if(status != null) {
+			criteria.andStatusEqualTo(status);
+		}
+		if(categoryId != null) {
+			System.out.println("categoryId:"+categoryId);
+			criteria.andCategoryIdEqualTo(categoryId);
+		}
+		List<Criterion> cs =  criteria.getAllCriteria();
+		System.out.println("条件：");
+		for(Criterion c : cs) {
+			System.out.println(c.getCondition()+"="+c.getValue());
+		}
+		// 返回查询结果
+		return articleMapper.selectByExample(example);
+	}
 
-    @Override
-    public void saveOrUpdate(Article article) throws CustomerException {
-        if (article.getId() != null) {
-            articleMapper.updateByPrimaryKey(article);
-        } else {
-            // 判断是否有同id，如果有抛出异常
-            ArticleExample example = new ArticleExample();
-            example.createCriteria().andIdEqualTo(article.getId());
-            List<Article> list = articleMapper.selectByExample(example);
-            if (list.size() > 0) {
-                throw new CustomerException("相同id已存在");
-            }
-            articleMapper.insert(article);
-        }
-    }
+	@Override
+	public void saveOrUpdate(Article article) {
+		if(article.getId() == null) {
+			// 初始化
+			article.setPublishTime(new Date().getTime());
+			article.setReadTimes(0l);
+			article.setThumpUp(0l);
+			article.setStatus("未审核");
+			articleMapper.insert(article);
+		} else {
+			articleMapper.updateByPrimaryKey(article);
+		}
+	}
 
-    @Override
-    public void deleteById(Long id) throws CustomerException {
-        Article article = articleMapper.selectByPrimaryKey(id);
-        if (article == null) {
-            throw new CustomerException("要删除的分类信息不存在");
-        }
-        articleMapper.deleteByPrimaryKey(id);
-    }
-
-
-    @Override
-    public List<Article> findAll() {
-        return articleMapper.selectByExample(new ArticleExample());
-    }
-
-    @Override
-    public Article findById(Long id) {
-        return articleMapper.selectByPrimaryKey(id);
-    }
+	@Override
+	public List<ArticleExtend> queryCascade(String title, String status, Long categoryId) {
+		return articleExtendMapper.select(title, status, categoryId);
+	}
 
 }
