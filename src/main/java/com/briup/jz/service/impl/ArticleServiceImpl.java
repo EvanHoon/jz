@@ -25,7 +25,7 @@ public class ArticleServiceImpl implements IArticleService {
 
 	@Override
 	public List<Article> query(String title, String status, Long categoryId) {
-		// 模板查询， 你喜欢什么样的男孩子  男的 170 黑一点
+		// 模板查询，
 		ArticleExample example = new ArticleExample();
 		Criteria criteria = example.createCriteria();
 		// 多条件符合查询
