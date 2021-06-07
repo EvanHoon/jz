@@ -2,7 +2,9 @@ package com.briup.jz.service.impl;
 
 import com.briup.jz.bean.Product;
 import com.briup.jz.bean.ProductExample;
+import com.briup.jz.bean.extend.ProductExtend;
 import com.briup.jz.dao.ProductMapper;
+import com.briup.jz.dao.extend.ProductExtendMapper;
 import com.briup.jz.service.IProductService;
 import com.briup.jz.utils.CustomerException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ public class ProductServiceImpl implements IProductService {
 
     @Autowired
     private ProductMapper productMapper;
+    @Autowired
+    private ProductExtendMapper productExtendMapper;
 
     @Override
     public void saveOrUpdate(Product product) throws CustomerException {
@@ -65,5 +69,10 @@ public class ProductServiceImpl implements IProductService {
         List<Product> list = productMapper.selectByExample(example);
         return list;
     }
+
+	@Override
+	public List<ProductExtend> selectCascade(String name, Double price, String status) {
+		return productExtendMapper.selectCascade(name, price, status);
+	}
 
 }

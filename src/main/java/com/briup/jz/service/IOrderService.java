@@ -1,6 +1,7 @@
 package com.briup.jz.service;
 
 import com.briup.jz.bean.Order;
+import com.briup.jz.bean.extend.OrderExtend;
 import com.briup.jz.utils.CustomerException;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface IOrderService {
     List<Order> findAll();
 
     Order findById(Long id);
+    
+    OrderExtend selectCascade(Long id);
 }

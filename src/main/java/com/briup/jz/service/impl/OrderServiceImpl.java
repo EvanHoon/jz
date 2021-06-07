@@ -2,7 +2,9 @@ package com.briup.jz.service.impl;
 
 import com.briup.jz.bean.Order;
 import com.briup.jz.bean.OrderExample;
+import com.briup.jz.bean.extend.OrderExtend;
 import com.briup.jz.dao.OrderMapper;
+import com.briup.jz.dao.extend.OrderExtendMapper;
 import com.briup.jz.service.IOrderService;
 import com.briup.jz.utils.CustomerException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ public class OrderServiceImpl implements IOrderService {
 
     @Autowired
     private OrderMapper orderMapper;
+    
+    @Autowired
+    private OrderExtendMapper orderExtendMapper;
 
     @Override
     public void saveOrUpdate(Order order) throws CustomerException {
@@ -49,4 +54,9 @@ public class OrderServiceImpl implements IOrderService {
         }
         return order;
     }
+
+	@Override
+	public OrderExtend selectCascade(Long id) {
+		return orderExtendMapper.selectCascade(id);
+	}
 }

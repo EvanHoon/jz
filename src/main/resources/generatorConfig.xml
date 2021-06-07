@@ -82,11 +82,10 @@
         <table tableName="jz_account_apply" domainObjectName="AccountApply"></table>
 <<<<<<< HEAD
  -		-->
-=======
-         -->
+
         <table tableName="cms_carousel" domainObjectName="Carousel"></table>
 <table tableName="jz_certification_apply" domainObjectName="CertificationApply"></table>
->>>>>>> 3067114977e952bca91d61229f99816a3444bdf5
+
 
         <!-- mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate -->
     </context>

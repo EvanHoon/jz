@@ -56,4 +56,12 @@ public class OrderController {
 	public Message findById(@NotNull Long id) {
 		return MessageUtil.success(orderService.findById(id));
 	}
+    
+    
+    @ApiOperation("根据订单id查询顾客和订单地址")
+   	@ApiImplicitParam(name="id",value="订单类别id",required=true,dataType="long",paramType="query")
+   	@GetMapping("/selectCascade")
+    public Message selectCascade(@NotNull Long id) {
+    	return MessageUtil.success(orderService.selectCascade(id));
+    }
 }
