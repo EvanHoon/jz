@@ -17,6 +17,33 @@
   	</where>
   </select>
   
+  <select id="selectById" resultMap="ArticleWithAllResultMap">
+  	select *
+  	from cms_article
+  	where id = #{id}
+  </select>
+  
+  <resultMap 
+  	type="com.briup.jz.bean.extend.ArticleExtend" 
+  	extends="com.briup.jz.dao.ArticleMapper.BaseResultMap"
+  	id="ArticleWithAllResultMap">
+  	<!-- 基本属性从extends中已经继承 -->
+  	<!-- 多对一映射 -->
+  	<association 
+  		property="category" 
+  		column="category_id" 
+  		select="com.briup.jz.dao.CategoryMapper.selectByPrimaryKey"></association>
+  	<association 
+  		property="author" 
+  		column="author_id" 
+  		select="com.briup.jz.dao.BaseUserMapper.selectByPrimaryKey"></association>
+  	<!-- 一对多 根据文章id查询评论 -->
+  	<collection 
+  		property="comments" 
+  		column="id" 
+  		select="com.briup.jz.dao.extend.CommentExtendMapper.selectByArticleId"></collection>
+  </resultMap>
+  
   <resultMap 
   	type="com.briup.jz.bean.extend.ArticleExtend" 
   	extends="com.briup.jz.dao.ArticleMapper.BaseResultMap"

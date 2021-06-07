@@ -11,4 +11,6 @@ public interface IArticleService {
 	List<Article> query(String title,String status,Long categoryId);
 	
 	void saveOrUpdate(Article article);
+
+	ArticleExtend read(Long id);
 }

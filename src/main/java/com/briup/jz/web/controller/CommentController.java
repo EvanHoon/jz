@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,15 +35,13 @@ public class CommentController {
 	  private ICommentService commentService;
 	  @ApiOperation(value = "查询所有资讯分类")
 	    @GetMapping("/findAll")
-	    public Message findAll(String name) {
+	    public Message findAll() {
 	      List<Comment>list = commentService.findAll();
 	        return MessageUtil.success(list);
 	    }
 	  @ApiOperation(value = "通过id删除")
-	    @GetMapping("/deleteById")
-	    @ApiImplicitParams({
-	    @ApiImplicitParam(name = "id", value = "主键", paramType = "query", required = true),
-	    })
+	  @DeleteMapping("/deleteById")
+	    @ApiImplicitParam(name = "id", value = "主键", paramType = "query", required = true)
 	    public Message deleteById(@NotNull Long id) {
 	        commentService.deleteById(id);
 	        return MessageUtil.success("删除成功");

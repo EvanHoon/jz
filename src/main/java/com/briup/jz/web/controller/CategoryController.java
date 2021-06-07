@@ -32,7 +32,7 @@ public class CategoryController {
 
     @ApiOperation(value = "查询所有资讯分类")
     @GetMapping("/findAll")
-    public Message findAll(String name) {
+    public Message findAll( ) {
         List<Category> list = categoryService.findAll();
         return MessageUtil.success(list);
     }

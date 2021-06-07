@@ -71,4 +71,14 @@ public class ArticleController {
 		articleService.saveOrUpdate(article);
     	return MessageUtil.success("操作成功");
     }
+	
+	@ApiOperation("阅读文章")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name="id",value="文章编号",required=true,paramType="query")
+	})
+	@GetMapping("read")
+	public Message read(Long id) {
+		ArticleExtend article = articleService.read(id);
+		return MessageUtil.success(article);
+	}
 }
