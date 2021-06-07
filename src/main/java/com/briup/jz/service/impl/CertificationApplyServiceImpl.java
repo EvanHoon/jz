@@ -4,7 +4,9 @@ import com.briup.jz.bean.BaseRolePrivilege;
 import com.briup.jz.bean.BaseRolePrivilegeExample;
 import com.briup.jz.bean.CertificationApply;
 import com.briup.jz.bean.CertificationApplyExample;
+import com.briup.jz.bean.extend.CertificationApplyExtend;
 import com.briup.jz.dao.CertificationApplyMapper;
+import com.briup.jz.dao.extend.CertificationApplyExtendMapper;
 import com.briup.jz.service.ICertificationApplyService;
 import com.briup.jz.utils.CustomerException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class CertificationApplyServiceImpl implements ICertificationApplyService
     @Autowired
     private CertificationApplyMapper certificationApplyMapper;
 
+    @Autowired
+    private CertificationApplyExtendMapper certificationApplyExtendMapper;
+
     @Override
     public void saveOrUpdate(CertificationApply certificationApply) {
         if (certificationApply.getId() != null) {
@@ -34,8 +39,8 @@ public class CertificationApplyServiceImpl implements ICertificationApplyService
     }
 
     @Override
-    public CertificationApply findById(Long id) {
-        return certificationApplyMapper.selectByPrimaryKey(id);
+    public List<CertificationApply> queryCascade(String realname, String status) {
+        return certificationApplyExtendMapper.select(realname, status);
     }
 
     @Override
