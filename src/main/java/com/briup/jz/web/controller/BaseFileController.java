@@ -8,9 +8,19 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.annotation.MultipartConfig;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,6 +32,7 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 @RestController
 @RequestMapping("/baseFile")
+@MultipartConfig(maxFileSize = 1024 * 1024 * 100, maxRequestSize = 1024 * 1024 * 200)
 public class BaseFileController {
 
     @Autowired
@@ -29,8 +40,8 @@ public class BaseFileController {
 
     @ApiOperation(value = "插入")
     @PostMapping("/save")
-    public Message save(BaseFile baseFile) {
-        baseFileService.save(baseFile);
+    public Message save(String fileType, MultipartFile source) throws IOException {
+        baseFileService.save(fileType, source);
         return MessageUtil.success("插入成功");
     }
 

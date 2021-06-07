@@ -3,19 +3,12 @@ package com.briup.jz.service;
 import java.util.List;
 
 import com.briup.jz.bean.Article;
-import com.briup.jz.utils.CustomerException;
+import com.briup.jz.bean.extend.ArticleExtend;
 
 public interface IArticleService {
-
-
-    void saveOrUpdate(Article article) throws CustomerException;
-
-    void deleteById(Long id) throws CustomerException;
-
-
-    List<Article> findAll();
-
-    Article findById(Long id);
-
-
+	List<ArticleExtend> queryCascade(String title,String status,Long categoryId);
+	
+	List<Article> query(String title,String status,Long categoryId);
+	
+	void saveOrUpdate(Article article);
 }

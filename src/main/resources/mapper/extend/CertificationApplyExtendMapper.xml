@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.jz.dao.extend.CertificationApplyExtendMapper">
+
+    <select id="select" resultMap="CertificationApplyResultMap">
+        select *
+        from jz_certification_apply
+        <where>
+            <if test="realname != null">
+                and realname = #{realname}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="CertificationApplyResultMap"
+               type="com.briup.jz.bean.extend.CertificationApplyExtend"
+               extends="com.briup.jz.dao.CertificationApplyMapper.BaseResultMap">
+        <!-- 基本属性从extends中已经继承 -->
+        <!-- 多对一映射 -->
+        <association
+                property="baseUser"
+                column="user_id"
+                select="com.briup.jz.dao.BaseUserMapper.selectByPrimaryKey"></association>
+    </resultMap>
+
+</mapper>

@@ -2,6 +2,7 @@ package com.briup.jz.service;
 
 import com.briup.jz.bean.BaseFile;
 import com.briup.jz.utils.CustomerException;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 
 public interface IBaseFileService {
 
-    void save(BaseFile baseFile) throws CustomerException;
+    void save(String fileType, MultipartFile source) throws CustomerException;
 
     BaseFile findById(String id);
 

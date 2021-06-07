@@ -15,7 +15,7 @@ public interface ICertificationApplyService {
 
     void saveOrUpdate(CertificationApply certificationApply) throws CustomerException;
 
-    CertificationApply findById(Long id);
+    List<CertificationApply> queryCascade(String realname, String status);
 
     List<CertificationApply> findAll();
 
