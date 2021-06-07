@@ -2,7 +2,9 @@ package com.briup.jz.service.impl;
 
 import com.briup.jz.bean.AccountCustomer;
 import com.briup.jz.bean.AccountCustomerExample;
+import com.briup.jz.bean.extend.AccountCustomerExtend;
 import com.briup.jz.dao.AccountCustomerMapper;
+import com.briup.jz.dao.extend.AccountCustomerExtendMapper;
 import com.briup.jz.service.IAccountCustomerService;
 import com.briup.jz.utils.CustomerException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,8 @@ import java.util.List;
 public class AccountCustomerServiceImpl implements IAccountCustomerService {
     @Autowired
     private AccountCustomerMapper accountCustomerMapper;
-
+    @Autowired
+    private AccountCustomerExtendMapper accountCustomerExtendMapper;
     @Override
     public void saveOrUpdate(AccountCustomer accountCustomer) throws CustomerException {
         if (accountCustomer.getId() == null) {
@@ -43,4 +46,10 @@ public class AccountCustomerServiceImpl implements IAccountCustomerService {
     public AccountCustomer findById(Long id) {
         return accountCustomerMapper.selectByPrimaryKey(id);
     }
+
+	@Override
+	public List<AccountCustomerExtend> queryCascade(String type, String status, Long userId) {
+		
+		return accountCustomerExtendMapper.select(type, status, userId);
+	}
 }

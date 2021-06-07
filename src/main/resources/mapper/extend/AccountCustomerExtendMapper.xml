@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.jz.dao.extend.AccountCustomerExtendMapper">
+  <select id="select" resultMap="AccountCustomerExtendResultMap">
+  	select * 
+  	from jz_account_customer
+  	<where>
+  		<if test="status != null">
+  			 status like concat("%",#{status},"%")
+  		</if>
+  		<if test="type != null">
+  			and type = #{type}
+  		</if>
+  		<if test="userId != null">
+  			and user_id = #{userId}
+  		</if>
+  	</where>
+  </select>
+  
+  <resultMap 
+  	type="com.briup.jz.bean.extend.AccountCustomerExtend" 
+  	extends="com.briup.jz.dao.AccountCustomerMapper.BaseResultMap"
+  	id="AccountCustomerExtendResultMap">
+  	<!-- 基本属性从extends中已经继承 -->
+  	<!-- 多对一映射 -->
+  	<association 
+  		property="baseUser" 
+  		column="user_id" 
+  		select="com.briup.jz.dao.BaseUserMapper.selectByPrimaryKey"></association>
+
+  </resultMap>
+  
+  
+  
+</mapper>
