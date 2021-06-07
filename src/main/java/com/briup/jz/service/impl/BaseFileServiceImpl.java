@@ -1,14 +1,23 @@
 package com.briup.jz.service.impl;
 
+import ch.qos.logback.core.util.FileUtil;
 import com.briup.jz.bean.BaseFile;
 import com.briup.jz.bean.BaseFileExample;
 import com.briup.jz.dao.BaseFileMapper;
 import com.briup.jz.service.IBaseFileService;
 import com.briup.jz.utils.CustomerException;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,8 +32,31 @@ public class BaseFileServiceImpl implements IBaseFileService {
     private BaseFileMapper baseFileMapper;
 
     @Override
-    public void save(BaseFile baseFile) {
-        // 判断是否有同名的分类，如果有抛出异常
+    public void save(String fileType, MultipartFile source) {
+
+        String oldFileName = source.getOriginalFilename();
+        String uniqueFilename = UUID.randomUUID().toString();
+        String ext = FilenameUtils.getExtension(oldFileName);// jpg png jpeg
+
+        List<String> nameList = Arrays.asList("jpg", "png", "jpeg", "PNG", "JPG");
+        if (!nameList.contains(ext)) {
+            throw new CustomerException("您的文件格式不符合规定 (.jpg .png .jpeg)");
+        }
+        String uniqueFilename2 = uniqueFilename + "." + ext;  // uuid.后缀
+
+        //保存文件
+        try {
+            source.transferTo(new File("C:/Users/11721/Desktop/" + uniqueFilename2));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        BaseFile baseFile = new BaseFile();
+        baseFile.setId(uniqueFilename);
+        baseFile.setFileName(oldFileName);
+        baseFile.setExtName("." + ext);
+        baseFile.setFileSize(source.getSize());
+        baseFile.setGroupName("groupName");
+        baseFile.setUploadTime(new Date().getTime());
         baseFileMapper.insert(baseFile);
     }
 

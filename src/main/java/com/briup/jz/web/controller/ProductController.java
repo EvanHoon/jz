@@ -28,7 +28,6 @@ public class ProductController {
     @Autowired
     private IProductService productService;
 
-
     @ApiOperation(value = "插入或更新")
     @PostMapping("/saveOrUpdate")
     public Message saveOrUpdate(Product product) {
@@ -65,5 +64,16 @@ public class ProductController {
     @GetMapping("/findNameLike")
     public Message findNameLike(String name) {
         return MessageUtil.success(productService.findLikeName(name));
+    }
+    
+    @ApiOperation(value="多条件符合级联查询",notes="级联查询出产品所属分类")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name="name",value="产品名字",paramType="query"),
+		@ApiImplicitParam(name="price",value="产品价格",paramType="query"),
+		@ApiImplicitParam(name="status",value="状态[未审核、通过、不通过、推荐]",paramType="query")
+	})
+    @GetMapping("/selectCascade")
+    public Message selectCascade(String name, Double price, String status) {
+        return MessageUtil.success(productService.selectCascade(name, price, status));
     }
 }

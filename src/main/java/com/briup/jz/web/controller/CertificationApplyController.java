@@ -59,11 +59,14 @@ public class CertificationApplyController {
         return MessageUtil.success("更新成功");
     }
 
-    @ApiOperation("根据id查询栏目信息")
-    @ApiImplicitParam(name = "id", value = "栏目id", required = true, dataType = "long", paramType = "query")
-    @GetMapping("findById")
-    public Message findById(Long id) {
-        return MessageUtil.success(certificationApplyService.findById(id));
+    @ApiOperation("多条件符合级联查询")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "realname", value = "用户名", paramType = "query"),
+            @ApiImplicitParam(name = "status", value = "状态", paramType = "query"),
+    })
+    @GetMapping("/queryCascade")
+    public Message queryCascade(String realname, String status) {
+        return MessageUtil.success(certificationApplyService.queryCascade(realname, status));
     }
 
 }

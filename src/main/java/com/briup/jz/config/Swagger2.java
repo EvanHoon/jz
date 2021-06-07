@@ -29,8 +29,8 @@ public class Swagger2 {
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
 				.title("家政服务预约云平台接口文档")
-				.description("昆山杰普软件科技有限公司，http://www.xxx.com")
-				.termsOfServiceUrl("http://www.briup.com")
+				.description("Made With Evan Hoon的Team")
+				.termsOfServiceUrl("www.localhost:8002/swagger-ui.html")
 				.version("1.0")
 				.build();
 	}
