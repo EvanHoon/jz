@@ -22,13 +22,6 @@ public class BaseUserServiceImpl implements IBaseUserService {
         if (baseUser.getId() != null) {
             baseUserMapper.updateByPrimaryKey(baseUser);
         } else {
-            // 判断是否有同id，如果有抛出异常
-            BaseUserExample example = new BaseUserExample();
-            example.createCriteria().andIdEqualTo(baseUser.getId());
-            List<BaseUser> list = baseUserMapper.selectByExample(example);
-            if (list.size() > 0) {
-                throw new CustomerException("相同id已存在");
-            }
             baseUserMapper.insert(baseUser);
         }
     }

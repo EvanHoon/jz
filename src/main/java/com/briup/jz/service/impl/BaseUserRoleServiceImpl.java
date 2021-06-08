@@ -21,13 +21,6 @@ public class BaseUserRoleServiceImpl implements IBaseUserRoleService {
         if (baseUserRole.getId() != null) {
             baseUserRoleMapper.updateByPrimaryKey(baseUserRole);
         } else {
-            // 判断是否有同id，如果有抛出异常
-            BaseUserRoleExample example = new BaseUserRoleExample();
-            example.createCriteria().andIdEqualTo(baseUserRole.getId());
-            List<BaseUserRole> list = baseUserRoleMapper.selectByExample(example);
-            if (list.size() > 0) {
-                throw new CustomerException("相同id已存在");
-            }
             baseUserRoleMapper.insert(baseUserRole);
         }
     }
