@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.jz.bean.AccountEmployee;
+import com.briup.jz.bean.extend.AccountEmployeeExtend;
 import com.briup.jz.service.IAccountEmployeeSerive;
 import com.briup.jz.utils.Message;
 import com.briup.jz.utils.MessageUtil;
@@ -28,6 +29,18 @@ import io.swagger.annotations.ApiOperation;
 public class AccountEmployeeController {
 	 @Autowired
 	    private IAccountEmployeeSerive accountEmployeeSerive;
+	 
+	 @ApiOperation(value="多条件符合级联查询",notes="级联查询出员工账户所属分类")
+		@ApiImplicitParams({
+			@ApiImplicitParam(name="type",value="交易类型（收益、提现）",paramType="query"),
+			@ApiImplicitParam(name="status",value="状态(正常、未审核)",paramType="query"),
+			@ApiImplicitParam(name="userId",value="用户id",paramType="query")
+		})
+		@GetMapping("queryCascade")
+	    public Message queryCascade(String type,String status,Long userId){
+			List<AccountEmployeeExtend> list = accountEmployeeSerive.queryCascade(type, status, userId);
+	        return MessageUtil.success(list);
+	    }
 
 	    @ApiOperation(value = "查询所有账户分类")
 	    @GetMapping("/findAll")

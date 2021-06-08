@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.jz.bean.AccountApply;
+import com.briup.jz.bean.extend.AccountApplyExtend;
 import com.briup.jz.service.IAccountApplyService;
 import com.briup.jz.utils.Message;
 import com.briup.jz.utils.MessageUtil;
@@ -27,7 +28,19 @@ import io.swagger.annotations.ApiOperation;
 public class AccountApplyController {
 	 @Autowired
 	    private IAccountApplyService accountApplyService;
-
+	 
+	 @ApiOperation(value="多条件符合级联查询",notes="级联查询出账户所属分类")
+		@ApiImplicitParams({
+			@ApiImplicitParam(name="applyType",value="申请类型（提现、充值）",paramType="query"),
+			@ApiImplicitParam(name="status",value="状态(通过、未审核)",paramType="query"),
+			@ApiImplicitParam(name="userId",value="用户id",paramType="query")
+		})
+		@GetMapping("queryCascade")
+	    public Message queryCascade(String applyType,String status,Long userId){
+			List<AccountApplyExtend> list = accountApplyService.queryCascade(applyType, status, userId);
+	        return MessageUtil.success(list);
+	    }
+	 
 	    @ApiOperation(value = "查询所有账户分类")
 	    @GetMapping("/findAll")
 	    public Message findAll(String name) {
