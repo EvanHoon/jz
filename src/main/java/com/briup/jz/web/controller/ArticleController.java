@@ -2,6 +2,8 @@ package com.briup.jz.web.controller;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -81,4 +83,13 @@ public class ArticleController {
 		ArticleExtend article = articleService.read(id);
 		return MessageUtil.success(article);
 	}
+    @ApiOperation(value = "通过id删除")
+    @GetMapping("/deleteById")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键", paramType = "query", required = true),
+    })
+    public Message deleteById(@NotNull Long id) {
+        articleService.deleteById(id);
+        return MessageUtil.success("删除成功");
+    }
 }

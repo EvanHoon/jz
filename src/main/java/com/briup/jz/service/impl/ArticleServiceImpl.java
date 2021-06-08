@@ -14,6 +14,7 @@ import com.briup.jz.bean.extend.ArticleExtend;
 import com.briup.jz.dao.ArticleMapper;
 import com.briup.jz.dao.extend.ArticleExtendMapper;
 import com.briup.jz.service.IArticleService;
+import com.briup.jz.utils.CustomerException;
 
 @Service
 public class ArticleServiceImpl implements IArticleService {
@@ -74,5 +75,14 @@ public class ArticleServiceImpl implements IArticleService {
 		//2. 将要阅读的文字查询出来并且返回
 		return articleExtendMapper.selectById(id);
 	}
+	
+	 @Override
+	    public void deleteById(Long id) throws CustomerException {
+	        Article article = articleMapper.selectByPrimaryKey(id);
+	        if (article == null) {
+	            throw new CustomerException("要删除的分类信息不存在");
+	        }
+	        articleMapper.deleteByPrimaryKey(id);
 
+	    }
 }
