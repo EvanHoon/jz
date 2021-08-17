@@ -1,13 +1,11 @@
 package com.briup.jz.service.impl;
 
-import ch.qos.logback.core.util.FileUtil;
 import com.briup.jz.bean.BaseFile;
 import com.briup.jz.bean.BaseFileExample;
 import com.briup.jz.dao.BaseFileMapper;
 import com.briup.jz.service.IBaseFileService;
 import com.briup.jz.utils.CustomerException;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,7 +44,7 @@ public class BaseFileServiceImpl implements IBaseFileService {
 
         //保存文件
         try {
-            source.transferTo(new File("C:/Users/11721/Desktop/" + uniqueFilename2));
+            source.transferTo(new File("/root/" + uniqueFilename2));
         } catch (IOException e) {
             e.printStackTrace();
         }
