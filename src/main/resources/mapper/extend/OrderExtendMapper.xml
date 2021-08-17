@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.briup.jz.dao.extend.OrderExtendMapper">
+<mapper namespace="com.evan.jz.dao.extend.OrderExtendMapper">
   <select id="selectCascade" resultMap="OrderResultMap">
 	select *
 	from jz_order 
@@ -9,15 +9,15 @@
 	</where>
   </select>
   
-  <resultMap id="OrderResultMap" type="com.briup.jz.bean.extend.OrderExtend" 
-  			extends="com.briup.jz.dao.OrderMapper.BaseResultMap">
+  <resultMap id="OrderResultMap" type="com.evan.jz.bean.extend.OrderExtend"
+  			extends="com.evan.jz.dao.OrderMapper.BaseResultMap">
    <association 
   		property="baseUser" 
   		column="customer_id" 
-  		select="com.briup.jz.dao.BaseUserMapper.selectByPrimaryKey"></association>
+  		select="com.evan.jz.dao.BaseUserMapper.selectByPrimaryKey"></association>
    <association 
   		property="address" 
   		column="address_id" 
-  		select="com.briup.jz.dao.AddressMapper.selectByPrimaryKey"></association>
+  		select="com.evan.jz.dao.AddressMapper.selectByPrimaryKey"></association>
   </resultMap>
 </mapper>

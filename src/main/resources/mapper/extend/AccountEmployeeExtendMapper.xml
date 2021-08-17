@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.briup.jz.dao.extend.AccountEmployeeExtendMapper">
+<mapper namespace="com.evan.jz.dao.extend.AccountEmployeeExtendMapper">
   <select id="select" resultMap="AccountEmployeeExtendResultMap">
   	select * 
   	from jz_account_employee
@@ -18,15 +18,15 @@
   </select>
   
   <resultMap 
-  	type="com.briup.jz.bean.extend.AccountEmployeeExtend" 
-  	extends="com.briup.jz.dao.AccountEmployeeMapper.BaseResultMap"
+  	type="com.evan.jz.bean.extend.AccountEmployeeExtend"
+  	extends="com.evan.jz.dao.AccountEmployeeMapper.BaseResultMap"
   	id="AccountEmployeeExtendResultMap">
   	<!-- 基本属性从extends中已经继承 -->
   	<!-- 多对一映射 -->
   	<association 
   		property="baseUser" 
   		column="user_id" 
-  		select="com.briup.jz.dao.BaseUserMapper.selectByPrimaryKey"></association>
+  		select="com.evan.jz.dao.BaseUserMapper.selectByPrimaryKey"></association>
 
   </resultMap>
   

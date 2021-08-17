@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.briup.jz.dao.extend.ArticleExtendMapper">
+<mapper namespace="com.evan.jz.dao.extend.ArticleExtendMapper">
   <select id="select" resultMap="ArticleExtendResultMap">
   	select * 
   	from cms_article
@@ -24,40 +24,40 @@
   </select>
   
   <resultMap 
-  	type="com.briup.jz.bean.extend.ArticleExtend" 
-  	extends="com.briup.jz.dao.ArticleMapper.BaseResultMap"
+  	type="com.evan.jz.bean.extend.ArticleExtend"
+  	extends="com.evan.jz.dao.ArticleMapper.BaseResultMap"
   	id="ArticleWithAllResultMap">
   	<!-- 基本属性从extends中已经继承 -->
   	<!-- 多对一映射 -->
   	<association 
   		property="category" 
   		column="category_id" 
-  		select="com.briup.jz.dao.CategoryMapper.selectByPrimaryKey"></association>
+  		select="com.evan.jz.dao.CategoryMapper.selectByPrimaryKey"></association>
   	<association 
   		property="author" 
   		column="author_id" 
-  		select="com.briup.jz.dao.BaseUserMapper.selectByPrimaryKey"></association>
+  		select="com.evan.jz.dao.BaseUserMapper.selectByPrimaryKey"></association>
   	<!-- 一对多 根据文章id查询评论 -->
   	<collection 
   		property="comments" 
   		column="id" 
-  		select="com.briup.jz.dao.extend.CommentExtendMapper.selectByArticleId"></collection>
+  		select="com.evan.jz.dao.extend.CommentExtendMapper.selectByArticleId"></collection>
   </resultMap>
   
   <resultMap 
-  	type="com.briup.jz.bean.extend.ArticleExtend" 
-  	extends="com.briup.jz.dao.ArticleMapper.BaseResultMap"
+  	type="com.evan.jz.bean.extend.ArticleExtend"
+  	extends="com.evan.jz.dao.ArticleMapper.BaseResultMap"
   	id="ArticleExtendResultMap">
   	<!-- 基本属性从extends中已经继承 -->
   	<!-- 多对一映射 -->
   	<association 
   		property="category" 
   		column="category_id" 
-  		select="com.briup.jz.dao.CategoryMapper.selectByPrimaryKey"></association>
+  		select="com.evan.jz.dao.CategoryMapper.selectByPrimaryKey"></association>
   	<association 
   		property="author" 
   		column="author_id" 
-  		select="com.briup.jz.dao.BaseUserMapper.selectByPrimaryKey"></association>
+  		select="com.evan.jz.dao.BaseUserMapper.selectByPrimaryKey"></association>
   </resultMap>
   
   
